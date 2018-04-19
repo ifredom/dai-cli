@@ -1,8 +1,8 @@
 {
   "name": "dai-cli",
   "version": "0.0.1",
-  "description": "base-constructor-generator",
-  "main": "main.js",
+  "description": "A Front-end Project Structure Generator For Vue,React,node-express,node-koa",
+  "main": "index.js",
   "scripts": {
     "test": "make test && npm run test-typings",
     "test-typings": "node_modules/typescript/bin/tsc -p tsconfig.json"
@@ -20,10 +20,11 @@
     "ini": "^1.3.5",
     "inquirer": "^5.2.0"
   },
-  "keywords": [
-    "ta-cli"
-  ],
   "author": "ifredom",
+  "keywords": ["dai-cli", "dai", "dai-generator", "vue", "node"],
   "repository": "ifredom/dai-cli",
+  "engines": {
+    "node": ">=4.0.0"
+  },
   "license": "MIT"
 }
