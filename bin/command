@@ -1,0 +1,112 @@
+#!/usr/bin/env node --harmony
+'use strict';
+var extend = require('extend');
+var chalk = require('chalk');
+const exec = require('child_process').exec;
+const co = require('co');
+const prompt = require('co-prompt');
+const download = require('download-git-repo');
+
+const templates = require('../templates');
+
+// Defining the scaffolding path
+process.env.NODE_PATH = __dirname + '/../node_modules';
+
+const program = require('commander');
+
+// Defining the current version
+program.version(require('../package').version, '-v, --version');
+
+// Definition instruction
+program
+  .command('list')
+  .description('List all the templates')
+  .alias('ls')
+  .action(() => {
+    onList();
+    exit();
+  });
+
+program
+  .command('init <template>')
+  .description('choose a template for init')
+  .option('i, init', 'Add bbq sauce')
+  .alias('i')
+  .action(onInit);
+
+program
+  .command('help')
+  .description('Print this help')
+  .alias('h')
+  .action(function() {
+    program.outputHelp();
+  });
+
+// start: own-use =============
+program
+  .command('own-add')
+  .description('add template')
+  .action(require('../command/own-add'));
+program
+  .command('own-del')
+  .description('del template')
+  .action(require('../command/own-del'));
+program
+  .command('own-syc')
+  .description('syc template')
+  .action(require('../command/own-syc'));
+// end: own-use ============
+program.parse(process.argv);
+
+if (program.init) console.log('  - peppers');
+
+if (process.argv.length === 2) {
+  program.outputHelp();
+}
+
+function getAllTemplates() {
+  return extend({}, templates);
+}
+
+// ========command function=========
+
+function onInit(templateName) {
+  co(function*() {
+    // handle user input
+
+    if (!templates[templateName]) {
+      console.log(chalk.red('\n × Template dose not exit!'));
+      console.log(` Use   ${chalk.green('ta list ')}   view the list of available template\n`);
+      errExit();
+    }
+
+    let gitOwner = 'ifredom';
+    let gitOwnerProjecName = 'ta-generator';
+
+    console.log(chalk.yellow('\n Start generating...'));
+    download(`${gitOwner}/${gitOwnerProjecName}`, 'generator-vue', function(err) {
+      console.log(chalk.green('\n √ Generation completed!'));
+      console.log(`\n cd ta-generator && npm install \n`);
+      exit();
+    });
+  });
+}
+
+function onList() {
+  var allTemplates = getAllTemplates();
+  Object.keys(allTemplates).forEach(function(tpl) {
+    var tplInfo = allTemplates[tpl];
+    console.log(chalk.yellow(` ${tpl} `), chalk.green(` (${tplInfo.branch})`));
+  });
+}
+
+function exit() {
+  process.exit(0);
+}
+function errExit() {
+  process.exit(1);
+}
+
+// refer to [command] https://github.com/tj/commander.js/
+// refer to [nrm]     https://github.com/Pana/nrm/blob/master/cli.js
+// refer to [scion]   https://segmentfault.com/a/1190000006190814?utm_source=weekly&utm_medium=email&utm_campaign=email_weekly#articleHeader0

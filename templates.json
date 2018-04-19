@@ -1,0 +1,4 @@
+{
+  "vue": { "branch": "master", "gitUrl": "https://github.com/ifredom/vue-answer.git" },
+  "node-express": { "branch": "master", "gitUrl": "https://github.com/ifredom/node-blog.git" }
+}
