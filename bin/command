@@ -56,6 +56,7 @@ program
   .description('syc template')
   .action(require('../command/own-syc'));
 // end: own-use ============
+
 program.parse(process.argv);
 
 if (program.init) console.log('  - peppers');
@@ -81,10 +82,16 @@ function onInit(templateName) {
     }
 
     let gitOwner = 'ifredom';
-    let gitOwnerProjecName = 'ta-generator';
+    let gitOwnerProjectName = 'generator-template';
+    let templateOutFile = 'template-vue';
+
+    if (templateName === 'node-express') {
+      gitOwnerProjectName = 'node-blog';
+      templateOutFile = 'template-node';
+    }
 
     console.log(chalk.yellow('\n Start generating...'));
-    download(`${gitOwner}/${gitOwnerProjecName}`, 'generator-vue', function(err) {
+    download(`${gitOwner}/${gitOwnerProjectName}`, templateOutFile, function(err) {
       console.log(chalk.green('\n √ Generation completed!'));
       console.log(`\n cd ta-generator && npm install \n`);
       exit();

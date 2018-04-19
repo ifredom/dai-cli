@@ -8,7 +8,7 @@ const fs = require('fs');
 module.exports = () => {
   co(function*() {
     let tplName = yield prompt('Template name: ');
-    let gitUrl = yield prompt('Git https link: ');
+    let gitUrl = yield prompt('Git UserName: ');
     let branch = yield prompt('Branch: ');
 
     // 避免重复添加

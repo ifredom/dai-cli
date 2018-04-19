@@ -4,3 +4,5 @@ node_modules
 logs
 dist/
 npm-debug.log
+template-node
+template-vue

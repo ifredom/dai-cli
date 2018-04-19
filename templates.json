@@ -1,4 +1,4 @@
 {
-  "vue": { "branch": "master", "gitUrl": "https://github.com/ifredom/vue-answer.git" },
-  "node-express": { "branch": "master", "gitUrl": "https://github.com/ifredom/node-blog.git" }
+  "vue": { "branch": "master", "gitOwn": "ifredom", "gitOwnProject": "generator-template" },
+  "node-express": { "branch": "master", "gitOwn": "ifredom","gitOwnProject": "node-blog" }
 }
