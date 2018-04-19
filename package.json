@@ -21,7 +21,13 @@
     "inquirer": "^5.2.0"
   },
   "author": "ifredom",
-  "keywords": ["dai-cli", "dai", "dai-generator", "vue", "node"],
+  "keywords": [
+    "dai-cli",
+    "dai",
+    "dai-generator",
+    "vue",
+    "node"
+  ],
   "repository": "ifredom/dai-cli",
   "engines": {
     "node": ">=4.0.0"

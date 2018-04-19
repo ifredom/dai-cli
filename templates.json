@@ -1,4 +1,1 @@
-{
-  "vue": { "branch": "master", "gitOwn": "ifredom", "gitOwnProject": "generator-template" },
-  "node-express": { "branch": "master", "gitOwn": "ifredom","gitOwnProject": "node-blog" }
-}
+{"vue":{"branch":"master","gitOwn":"ifredom","gitOwnProject":"generator-template"},"node-express":{"branch":"master","gitOwn":"ifredom","gitOwnProject":"node-blog"}}
