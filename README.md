@@ -30,7 +30,6 @@ Calling the `version` implicitly adds the `-v` and `--version` options to the co
      -v, --version        output the version number
      -ls, --list          output List of available templates
 ```
-
 ## License
 
 MIT
