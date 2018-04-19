@@ -1,5 +1,5 @@
 {
-  "name": "ta",
+  "name": "dai-cli",
   "version": "0.0.1",
   "description": "base-constructor-generator",
   "main": "main.js",
@@ -8,7 +8,7 @@
     "test-typings": "node_modules/typescript/bin/tsc -p tsconfig.json"
   },
   "bin": {
-    "ta": "bin/command"
+    "dai": "bin/command"
   },
   "dependencies": {
     "chalk": "^1.1.3",
@@ -24,5 +24,6 @@
     "ta-cli"
   ],
   "author": "ifredom",
+  "repository": "ifredom/dai-cli",
   "license": "MIT"
 }
