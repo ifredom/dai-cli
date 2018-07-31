@@ -18,6 +18,8 @@ module.exports = () => {
       templates[tplName]['gitUserName'] = gitUserName;
       templates[tplName]['gitOwnProject'] = gitOwnProject;
       templates[tplName]['gitOwn'] = branch;
+      console.log(chalk.red('  Template has being created!'));
+      console.log(chalk.green('  Use `dai ls` to view.'));
     } else {
       console.log(chalk.red('  Template has already existed!'));
       process.exit();

@@ -1,6 +1,6 @@
 {
   "name": "dai-cli",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A Front-end Project Structure Generator For Vue,React,node-express,node-koa",
   "main": "index.js",
   "scripts": {
@@ -18,7 +18,8 @@
     "download-git-repo": "^1.0.2",
     "extend": "^3.0.1",
     "ini": "^1.3.5",
-    "inquirer": "^5.2.0"
+    "inquirer": "^5.2.0",
+    "ora": "^3.0.0"
   },
   "author": "ifredom",
   "keywords": [

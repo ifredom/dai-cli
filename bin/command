@@ -1,4 +1,5 @@
 #!/usr/bin/env node --harmony
+
 'use strict';
 var extend = require('extend');
 var chalk = require('chalk');
@@ -12,104 +13,60 @@ const templates = require('../templates');
 // Defining the scaffolding path
 process.env.NODE_PATH = __dirname + '/../node_modules';
 
-const program = require('commander');
+const commander = require('commander');
 
 // Defining the current version
-program.version(require('../package').version, '-v, --version');
+commander.version(require('../package').version, '-v, --version');
 
 // Definition instruction
-program
+commander
+  .command('init <templateName>')
+  .description('choose a template for init')
+  .option('init')
+  // .alias('i')
+  .action((templateName) => {
+    require('../command/init')(templateName)
+  });
+
+commander
   .command('list')
-  .description('List all the templates')
-  .alias('ls')
+  .description('All available templates list')
   .action(() => {
-    onList();
+    // onList();
+    require('../command/list')()
     exit();
   });
 
-program
-  .command('init <template>')
-  .description('choose a template for init')
-  .option('i, init', 'Add bbq sauce')
-  .alias('i')
-  .action(onInit);
+//   commander
+//   .command('add')
+//   .description('add self\'s template')
+//   // .alias('a')
+//   .action(require('../command/add'));
+// commander
+//   .command('del')
+//   .description('del template')
+//   // .alias('d')
+//   .action(require('../command/del'));
+// commander
+//   .command('syc')
+//   .description('syc template')
+//   // .alias('s')
+//   .action(require('../command/syc'));
 
-program
-  .command('help')
-  .description('Print this help')
-  .alias('h')
-  .action(function() {
-    program.outputHelp();
-  });
-
-// start: own-use =============
-program
-  .command('own-add')
-  .description('add template')
-  .action(require('../command/own-add'));
-program
-  .command('own-del')
-  .description('del template')
-  .action(require('../command/own-del'));
-program
-  .command('own-syc')
-  .description('syc template')
-  .action(require('../command/own-syc'));
-// end: own-use ============
-
-program.parse(process.argv);
-
-if (program.init) console.log('  - peppers');
-
-if (process.argv.length === 2) {
-  program.outputHelp();
-}
-
-function getAllTemplates() {
-  return extend({}, templates);
-}
+commander.parse(process.argv);
 
 // ========command function=========
 
-function onInit(templateName) {
-  co(function*() {
-    // handle user input
+if (commander.init) console.log('  - peppers');
 
-    if (!templates[templateName]) {
-      console.log(chalk.red('\n × Template dose not exit!'));
-      console.log(` Use   ${chalk.green('ta list ')}   view the list of available template\n`);
-      errExit();
-    }
-
-    let gitOwner = 'ifredom';
-    let gitOwnerProjectName = 'generator-template';
-    let templateOutFile = 'template-vue';
-
-    if (templateName === 'node-express') {
-      gitOwnerProjectName = 'node-blog';
-      templateOutFile = 'template-node';
-    }
-
-    console.log(chalk.yellow('\n Start generating...'));
-    download(`${gitOwner}/${gitOwnerProjectName}`, templateOutFile, function(err) {
-      console.log(chalk.green('\n √ Generation completed!'));
-      console.log(`\n cd ta-generator && npm install \n`);
-      exit();
-    });
-  });
-}
-
-function onList() {
-  var allTemplates = getAllTemplates();
-  Object.keys(allTemplates).forEach(function(tpl) {
-    var tplInfo = allTemplates[tpl];
-    console.log(chalk.yellow(` ${tpl} `), chalk.green(` (${tplInfo.branch})`));
-  });
+if (process.argv.length === 2) {
+  commander.outputHelp();
 }
 
 function exit() {
   process.exit(0);
 }
+
 function errExit() {
   process.exit(1);
 }
