@@ -1,6 +1,6 @@
 {
   "name": "dai-cli",
-  "version": "0.1.0",
+  "version": "0.2.3",
   "description": "A Front-end Project Structure Generator For Vue,React,node-express,node-koa",
   "main": "index.js",
   "scripts": {

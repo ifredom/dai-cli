@@ -7,32 +7,30 @@ const exec = require('child_process').exec;
 const co = require('co');
 const prompt = require('co-prompt');
 const download = require('download-git-repo');
-
-const templates = require('../templates');
+const pkg = require('../package');
+const commander = require('commander');
 
 // Defining the scaffolding path
 process.env.NODE_PATH = __dirname + '/../node_modules';
 
-const commander = require('commander');
-
 // Defining the current version
-commander.version(require('../package').version, '-v, --version');
+commander.version(pkg.version, '-v, --version');
 
 // Definition instruction
 commander
-  .command('init <templateName>')
-  .description('choose a template for init')
-  .option('init')
-  // .alias('i')
-  .action((templateName) => {
-    require('../command/init')(templateName)
+  .command('init  <templateName>')
+  .description('choose a template with init')
+  .alias('i')
+  .action((tpl) => {
+    require('../command/init')(tpl)
+    exit();
   });
 
 commander
   .command('list')
-  .description('All available templates list')
+  .description('All available template')
+  .alias('ls')
   .action(() => {
-    // onList();
     require('../command/list')()
     exit();
   });
@@ -71,6 +69,9 @@ function errExit() {
   process.exit(1);
 }
 
-// refer to [command] https://github.com/tj/commander.js/
-// refer to [nrm]     https://github.com/Pana/nrm/blob/master/cli.js
-// refer to [scion]   https://segmentfault.com/a/1190000006190814?utm_source=weekly&utm_medium=email&utm_campaign=email_weekly#articleHeader0
+// refer to [command]   https://github.com/tj/commander.js/
+// refer to [nrm]       https://github.com/Pana/nrm/blob/master/cli.js
+// refer to [inquirer]  https://www.npmjs.com/package/inquirer
+// refer to [chalk]     https://www.npmjs.com/package/chalk
+// refer to [scion]     https://segmentfault.com/a/1190000006190814?utm_source=weekly&utm_medium=email&utm_campaign=email_weekly#articleHeader0
+// refer to [public npm modules]   https://segmentfault.com/a/1190000006190814?utm_source=weekly&utm_medium=email&utm_campaign=email_weekly#articleHeader0

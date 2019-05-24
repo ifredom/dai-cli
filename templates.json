@@ -1,8 +1,18 @@
 {
-  "vue": {
+  "template-pc-elementui": {
     "branch": "master",
     "gitOwn": "ifredom",
-    "gitOwnProject": "generator-template"
+    "gitOwnProject": "template-pc-vue-elementui"
+  },
+  "template-mobile-vant": {
+    "branch": "master",
+    "gitOwn": "ifredom",
+    "gitOwnProject": "template-mobile-vue-vant"
+  },
+  "electron": {
+    "branch": "master",
+    "gitOwn": "ifredom",
+    "gitOwnProject": "template-electron"
   },
   "node-express": {
     "branch": "master",
